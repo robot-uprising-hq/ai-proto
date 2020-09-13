@@ -6,8 +6,9 @@ package robotsystemcommunication;
 // COMMUNICATION TO ROBOT FRONTEND
 // ===============================
 enum StatusType {
-    OK = 0;
-    ERROR = 1;
+    UNKNOWN = 0;
+    OK = 1;
+    ERROR = 2;
 }
 
 message RobotActionRequest {
