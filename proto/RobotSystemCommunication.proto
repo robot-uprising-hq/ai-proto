@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package robotsystemcommunication;
+
+// ===============================
+// COMMUNICATION TO ROBOT FRONTEND
+// ===============================
+enum StatusType {
+    OK = 0;
+    ERROR = 1;
+}
+
+message RobotActionRequest {
+    int32 leftMotorAction = 1;
+    int32 rightMotorAction = 2;
+    int32 actionTimeout = 3; // timeout of action in milliseconds.
+}
+
+message RobotActionResponse {
+    StatusType status = 1;
+}
+
+message RobotPingRequest {  
+}
+
+message RobotPingResponse {
+    string ipAddress = 1;
+    string macAddress = 2;
+}
+
+message RobotRequest {
+    uint32 reqId = 1; // This should be an id that will be tied to the response.
+    oneof req {
+        RobotActionRequest act = 10;
+        RobotPingRequest ping = 11;
+    }
+}
+
+message RobotResponse {
+    uint32 reqId = 1; // This will match the request that the response is for.
+    oneof resp {
+        RobotActionResponse act = 10;
+        RobotPingResponse ping = 11;
+    }
+}
+
+service RobotFrontend {
+    rpc MakeAction(RobotActionRequest) returns (RobotActionResponse) {}
+}
+
+
+// =============================
+// COMMUNICATION TO BRAIN SERVER
+// =============================
+message BrainActionResponse {
+    int32 action = 1;
+}
+
+message BrainActionRequest {
+    repeated float lowerObservations = 1;
+    repeated float upperObservations = 2;
+}
+
+service BrainServer {
+    rpc GetAction(BrainActionRequest) returns (BrainActionResponse) {}
+}
+
+
+// =======================
+// COMMUNICATION SIMULATOR
+// =======================
+message SimulationScreenCaptureResponse {
+  bytes image = 1;
+}
+
+enum ImageType {
+    JPG = 0;
+    PNG = 1;
+}
+
+message SimulationScreenCaptureRequest {
+  int32 height = 1;
+  int32 widht = 2;
+  ImageType imageType = 3;
+  int32 jpgQuality = 4; // Used only if image type is JPG
+}
+
+message SimulationActionRequest {
+    int32 action = 1;
+}
+
+message SimulationActionResponse {
+    StatusType status = 1;
+}
+
+service SimulationServer {
+  rpc GetScreenCapture(SimulationScreenCaptureRequest) returns (SimulationScreenCaptureResponse) {}
+  rpc MakeAction(SimulationActionRequest) returns (SimulationActionResponse) {}
+}
+
+
+
