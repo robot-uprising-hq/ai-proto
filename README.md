@@ -24,3 +24,4 @@ Run `./gen-robot.sh` to generate and place the generated code to the AI Robot.
 
 ## AI Simulation and AI Remote Brain
 Run `./gen-aisimulation-and-airemotebrain.sh` to generate and place the generated code to the AI Simulation and the AI Remote Brain.
+Note. Unity uses very old grpc version [1.14.1](https://github.com/Unity-Technologies/ml-agents/blob/master/protobuf-definitions/README.md). The script uses version 1.15.0 which seems to work even though the version difference.

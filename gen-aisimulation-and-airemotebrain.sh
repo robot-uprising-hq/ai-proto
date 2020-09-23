@@ -4,10 +4,10 @@
 
 # This script downloads the needed plugins to generate C# protobuf and gRPC code.
 
-LINUX_DOWNLOAD_URL=https://packages.grpc.io/archive/2020/09/1f964e3b24f32b57255ced1e864d3386b98b89c2-edba4667-d461-4d79-957f-117bd615a53c/protoc/grpc-protoc_linux_x64-1.33.0-dev.tar.gz
-MAC_DOWNLOAD_URL=https://packages.grpc.io/archive/2020/09/1f964e3b24f32b57255ced1e864d3386b98b89c2-edba4667-d461-4d79-957f-117bd615a53c/protoc/grpc-protoc_macos_x64-1.33.0-dev.tar.gz
-LINUX_PLUGINS_FILE=grpc-protoc_linux_x64-1.33.0-dev.tar.gz
-MAC_PLUGINS_FILE=grpc-protoc_macos_x64-1.33.0-dev.tar.gz
+LINUX_PLUGINS_FILE=grpc-protoc_linux_x64-1.15.0-dev.tar.gz
+MAC_PLUGINS_FILE=grpc-protoc_macos_x64-1.15.0-dev.tar.gz
+LINUX_DOWNLOAD_URL=https://packages.grpc.io/archive/2018/07/c01ec499125fab39cd1ec755bbdfdb042e08ac37-d96839c3-557e-4938-91a3-ebc24f49aaf5/protoc/$LINUX_PLUGINS_FILE
+MAC_DOWNLOAD_URL=https://packages.grpc.io/archive/2018/07/c01ec499125fab39cd1ec755bbdfdb042e08ac37-d96839c3-557e-4938-91a3-ebc24f49aaf5/protoc/$MAC_PLUGINS_FILE
 PLUGINS_FOLDER=plugins
 AI_SIMULATOR_CODE_PATH=$PWD/../ai-simulator/Assets/Scripts/Proto/GeneratedCode/
 AI_REMOTE_BRAIN_CODE_PATH=$PWD/../ai-remote-brain/Assets/Scripts/Proto/GeneratedCode/

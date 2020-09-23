@@ -54,12 +54,22 @@ service RobotFrontend {
 // COMMUNICATION TO BRAIN SERVER
 // =============================
 message BrainActionResponse {
+    repeated RobotAction actions = 1;
+}
+
+message RobotAction {
     int32 action = 1;
+    int32 arucoMarkerID = 2;
 }
 
 message BrainActionRequest {
+    repeated Observations observations = 1;
+}
+
+message Observations {
     repeated float lowerObservations = 1;
     repeated float upperObservations = 2;
+    int32 arucoMarkerID = 3;
 }
 
 service BrainServer {
@@ -87,7 +97,7 @@ message SimulationScreenCaptureRequest {
 }
 
 message SimulationActionRequest {
-    int32 action = 1;
+    repeated RobotAction actions = 1;
 }
 
 message SimulationActionResponse {
@@ -98,6 +108,3 @@ service SimulationServer {
   rpc GetScreenCapture(SimulationScreenCaptureRequest) returns (SimulationScreenCaptureResponse) {}
   rpc MakeAction(SimulationActionRequest) returns (SimulationActionResponse) {}
 }
-
-
-
